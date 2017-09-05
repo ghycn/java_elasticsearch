@@ -13,10 +13,9 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.rest.RestStatus;
-import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -37,7 +36,7 @@ public class Elasticsearch {
     public void  getClient(){
         Map<String, String> map = new HashMap<String, String>();
         map.put("cluster.name","elasticsearch");//设置集群名称
-        map.put("xpack.security.user","elastic:123456");//设置x-pack安全认证
+        //map.put("xpack.security.user","elastic:123456");//设置x-pack安全认证
 
         Settings settings = Settings.builder().put(map).build();
         /**
@@ -47,7 +46,7 @@ public class Elasticsearch {
          */
         client = null;
         try {
-            client = new PreBuiltXPackTransportClient(settings)
+            client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("10.211.55.4"), 9300));
         } catch (UnknownHostException e) {
             e.printStackTrace();

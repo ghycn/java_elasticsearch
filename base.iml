@@ -89,17 +89,6 @@
     <orderEntry type="library" name="Maven: com.github.spullara.mustache.java:compiler:0.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch.plugin:percolator-client:5.5.2" level="project" />
     <orderEntry type="library" name="Maven: org.elasticsearch.plugin:parent-join-client:5.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.elasticsearch.client:x-pack-transport:5.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.elasticsearch.plugin:x-pack-api:5.5.2" level="project" />
-    <orderEntry type="library" name="Maven: com.unboundid:unboundid-ldapsdk:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.55" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.55" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:r239" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.3" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.elasticsearch.client:sniffer:5.5.2" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.supercsv:super-csv:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.7" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:2.0.2" level="project" />
