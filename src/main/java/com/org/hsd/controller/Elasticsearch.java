@@ -1,13 +1,17 @@
 package com.org.hsd.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 import org.junit.Before;
@@ -106,4 +110,62 @@ public class Elasticsearch {
         RestStatus status = response.status();
         System.out.println(index + " : " + type + ": " + id + ": " + version + ": " + status.getStatus());
     }
+
+
+    /**
+     * get API 获取指定文档信息
+     */
+    @Test
+    public void testGet() {
+
+        GetResponse response = client.prepareGet("twitter", "tweet", "1")
+                .setOperationThreaded(false)    // 线程安全
+                .get();
+        System.out.println(response.getSourceAsString());
+    }
+
+
+    /**
+     * 测试更新 update API
+     * 使用 updateRequest 对象
+     * @throws Exception
+     */
+    @Test
+    public void testUpdate() throws Exception {
+        UpdateRequest updateRequest = new UpdateRequest();
+        updateRequest.index("twitter");
+        updateRequest.type("tweet");
+        updateRequest.id("1");
+        updateRequest.doc(XContentFactory.jsonBuilder()
+                .startObject()
+                // 对没有的字段添加, 对已有的字段替换
+                .field("gender", "male")
+                .field("message", "hello")
+                .endObject());
+        UpdateResponse response = client.update(updateRequest).get();
+
+        // 打印
+        String index = response.getIndex();
+        String type = response.getType();
+        String id = response.getId();
+        long version = response.getVersion();
+        System.out.println(index + " : " + type + ": " + id + ": " + version);
+    }
+
+
+
+    /**
+     * 测试 delete api
+     */
+    @Test
+    public void testDelete() {
+        DeleteResponse response = client.prepareDelete("twitter", "tweet", "1")
+                .get();
+        String index = response.getIndex();
+        String type = response.getType();
+        String id = response.getId();
+        long version = response.getVersion();
+        System.out.println(index + " : " + type + ": " + id + ": " + version);
+    }
+
 }
